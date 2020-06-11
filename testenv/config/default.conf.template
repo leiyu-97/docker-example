@@ -1,0 +1,27 @@
+server {
+    listen       80;
+    listen       [::]:80;
+    server_name  localhost;
+
+    gzip on;
+    gzip_min_length 1k;
+    gzip_buffers 4 16k;
+    gzip_comp_level 5;
+    gzip_types text/plain application/javascript text/css;
+
+    location /${BRANCH}/ {
+        root /usr/share/nginx/web;
+    }
+
+    location /${BRANCH}/api {
+        proxy_pass http://server-${BRANCH}:7000;
+    }
+
+    error_page 404 /404.html;
+        location = /40x.html {
+    }
+
+    error_page 500 502 503 504 /50x.html;
+        location = /50x.html {
+    }
+}
