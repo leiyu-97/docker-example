@@ -13,7 +13,7 @@ export default class App extends React.Component {
     return (
       <div>
         <div>
-          branch: master
+          branch: test
         </div>
         <div>
           server status:
