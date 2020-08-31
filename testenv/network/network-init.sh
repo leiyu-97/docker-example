@@ -11,7 +11,7 @@ Usage: ./network-init.sh [option] <command>
 EOF
 }
 
-DIR="`dirname "$0"`"
+DIR=$(cd $(dirname "$0") && pwd)
 # 默认值
 NAME=docker-example
 PORT=80
@@ -46,9 +46,9 @@ shift
 
 clean() {
   # 清理
-  docker container stop $NAME-nginx
-  docker container rm $NAME-nginx
-  docker network rm $NAME
+  docker container stop $NAME-nginx 2> /dev/null
+  docker container rm $NAME-nginx 2> /dev/null
+  docker network rm $NAME 2> /dev/null
 }
 
 case "$CMD" in
