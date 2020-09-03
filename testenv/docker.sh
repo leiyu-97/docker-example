@@ -62,18 +62,18 @@ case "$CMD" in
         docker-compose -p $NAME-$BRANCH -f "${DIR}/docker-compose.yml" up -d --build
         ;;
     stop)
-        docker-compose  -p $NAME-$BRANCH -f "${DIR}docker-compose.yml" down
+        docker-compose  -p $NAME-$BRANCH -f "${DIR}/docker-compose.yml" down
         ;;
     restart)
         mkdir logs
         mkdir logs/$BRANCH
         mkdir logs/$BRANCH/nginx
         mkdir logs/$BRANCH/server
-        docker-compose  -p $NAME-$BRANCH -f "${DIR}docker-compose.yml" down
-        docker-compose  -p $NAME-$BRANCH -f "${DIR}docker-compose.yml" up -d --build
+        docker-compose  -p $NAME-$BRANCH -f "${DIR}/docker-compose.yml" down
+        docker-compose  -p $NAME-$BRANCH -f "${DIR}/docker-compose.yml" up -d --build
         ;;
     remove)
-        docker-compose  -p $NAME-$BRANCH -f "${DIR}docker-compose.yml" down
+        docker-compose  -p $NAME-$BRANCH -f "${DIR}/docker-compose.yml" down
         docker image rm `docker images --format "{{.Repository}}" | grep $NAME-$BRANCH`
         ;;
     *)
